@@ -1,0 +1,22 @@
+Package: bltable
+Title: Add the Nobs to gtsummary tables
+Author: Marie Roumet
+Maintainer: Marie Roumet <marie.roumet@unibe.ch>
+Version: 0.1
+Description: Add the Nobs to gtsummary tables
+Depends: 
+  R (>= 4.1.0)
+License: GPL (>= 2)
+Encoding: UTF-8
+RoxygenNote: 7.3.3
+Imports: 
+  gtsummary,
+  tidyr,
+  dplyr,
+  tibble,
+  labelled,
+  survival
+Suggests:
+  knitr,
+  testthat (>= 3.0.0)
+Config/testthat/edition: 3

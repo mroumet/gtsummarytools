@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^README
+^.github
+vignettes/to_procompile/*
+vignettes/_*
