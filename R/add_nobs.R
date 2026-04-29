@@ -24,7 +24,9 @@
 #'  "row" : Nobs is displayed as statistics alongside the variable name. Stats are presented below 
 #'   
 #'  "var_name": Nobs is added after the variable name within the same cell.This option is only available if the table is not stratified  
-#
+#'  
+#' @param rm_missing if TRUE (default), the presentation of the missing data will be removed from table
+#'  
 #' @return a gtsummary table with the Nobs 
 #' 
 #' @examples
@@ -62,7 +64,7 @@
 #' add_overall() 
 #' 
 #'  # .Add Nobs gtsummaty table 
-#' tab |>  add_nobs (location = "row")
+#' tab |>  add_nobs (location = "row", rm_missing = TRUE)
 #' tab |> add_nobs (location = "col")
 #'   
 #' # Ex2: un-stratified table 
@@ -81,7 +83,7 @@
 #' @import gtsummary
 #' 
 
-add_nobs <- function(table, location = "col"){
+add_nobs <- function(table, location = "col", rm_missing = TRUE){
   
   #...........................................----
   # parameters ----
@@ -104,6 +106,16 @@ add_nobs <- function(table, location = "col"){
   #...........................................----
   # Add Nobs in column (default)----
   #...........................................----
+#   If needed remove the presentation of the missing values
+  if (rm_missing == TRUE) { 
+  table <- 
+    table  %>% 
+    modify_table_body(
+      ~ .x  %>%   
+        filter(row_type != "missing")
+    )
+  }
+  
   # Add overall Nobs: If overall OR no grouping ----
   
   #. Nobs in a column ----
