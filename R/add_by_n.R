@@ -25,6 +25,8 @@
 
 
 add_by_n <- function(data, variable, by, ...) {
+  by_col <- NULL
+  
   data |> 
     select (all_of ( c(variable, by)) ) |> 
     arrange (pick ( all_of( c(by, variable) ) ) ) |> 

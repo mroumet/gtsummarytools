@@ -29,14 +29,18 @@
 #' 
 #' @examples
 #' #Data
+#' library(dplyr)
+#' library(labelled)
+#' library(gtsummary)
+#' 
 #' data("cancer", package = "survival")#' 
 #' cancer <- 
-#'  cancer %>% 
-#' dplyr::mutate(
+#'  cancer |> 
+#' mutate(
 #'   sex.factor = factor(sex, levels = c(1,2), labels = c("Female", "Male") ),
 #'  yn_var = factor(sex, levels = c(1,2), labels = c("Yes", "No") )
-#') %>% 
-#'labelled::set_variable_labels (
+#') |>
+#' set_variable_labels (
 #'  yn_var = "Yes/no variable",
 #'  sex.factor = "Gender",
 #'  inst = "Institution code",
@@ -48,28 +52,28 @@
 #'  # Ex1: stratified table
 #'  #. gtsummaty table
 #' tab <- 
-#'   cancer %>% 
-#'   select(sex.factor, yn_var, inst, time,age, ph.ecog) %>% 
-#'   gtsummary::tbl_summary(
+#'   cancer |> 
+#'   select(sex.factor, yn_var, inst, time,age, ph.ecog) |> 
+#'   tbl_summary(
 #'  by=sex.factor,
 #'  type = all_continuous() ~ "continuous2",
 #'  statistic = all_continuous() ~ c("{median} ({p25}, {p75})", "{min} - {max}"),
-#' )  %>% 
-#' gtsummary::add_overall() 
+#' )  |> 
+#' add_overall() 
 #' 
 #'  # .Add Nobs gtsummaty table 
-#' tab %>%  add_nobs (location = "row")
-#' tab %>% add_nobs (location = "col")
+#' tab |>  add_nobs (location = "row")
+#' tab |> add_nobs (location = "col")
 #'   
 #' # Ex2: un-stratified table 
-#' #. gtsummaty table
+#' #. gtsummary table
 #' tab <- 
-#'   cancer %>% 
-#'   select(sex.factor, yn_var, inst, time,age, ph.ecog) %>% 
-#'   gtsummary::tbl_summary() 
+#'   cancer |> 
+#'   select(sex.factor, yn_var, inst, time,age, ph.ecog) |> 
+#'   tbl_summary() 
 #'   
 #'  # .Add Nobs gtsummaty table 
-#'  tab %>%  
+#'  tab |>  
 #'  add_nobs(location = "var_name")
 #' 
 #' @export
@@ -93,7 +97,7 @@ add_nobs <- function(table, location = "col"){
     stop("ERROR : this location option is only available for stratified tables")
   }
   
-  if(class(tab)[1] !=  'tbl_summary'[1] |  class(tab)[2] !='gtsummary'){
+  if(class(table)[1] !=  'tbl_summary' |  class(table)[2] !='gtsummary'){
     stop("ERROR : table should be a table of class c('tbl_summary', 'gtsummary')" )
   }
   

@@ -13,11 +13,10 @@ Imports:
   gtsummary,
   tidyr,
   dplyr,
-  tibble,
-  labelled,
-  survival,
   rlang
 Suggests:
   knitr,
+  labelled,
+  survival,
   testthat (>= 3.0.0)
 Config/testthat/edition: 3

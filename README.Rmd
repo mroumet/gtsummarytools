@@ -31,7 +31,7 @@ background: gtsummary shows total Ns by default, which can lead to confusion, es
 Linux users might have to install from source:
 
 ```{r, eval = FALSE}
-remotes::install_github("dcr-unibe-ch/bltable")
+remotes::install_github("dcr-unibe-ch/gtsummarytools")
 ```
 
 This may require `Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")` if packages were built under a different R version to the one you are using.
@@ -55,6 +55,6 @@ Depending on the specified location Nobs will be:
   (ii) displayed as statistics alongside the variable name
   (iii) added after the variable name within the same cell.
 
-The 'Add Ns for gtsummary' addin places the necessary code into the active document. One part of the code is a function, which should be moved to an appropriate location for functions (e.g. 01_packages_functions.R). The rest can be integrated into a `tbl_summary` call. 
+
 
 
