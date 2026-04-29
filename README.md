@@ -23,7 +23,7 @@ presence of missing data.
 Linux users might have to install from source:
 
 ``` r
-remotes::install_github("dcr-unibe-ch/bltable")
+remotes::install_github("dcr-unibe-ch/gtsummarytools")
 ```
 
 This may require `Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS="true")`

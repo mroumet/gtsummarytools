@@ -6,7 +6,7 @@
 # /* ******************************************************************** */ 
 
 
-#' bl_nobs_function
+#' add_nobs
 #' 
 #' Add Nobs to a gtsummary table of class "tbl_summary" 
 #' This function add the Nobs (i.e. number of non-missing data) to a gtsummary table. 
@@ -25,7 +25,9 @@
 #'   
 #'  "var_name": Nobs is added after the variable name within the same cell.This option is only available if the table is not stratified  
 #'  
-#' @param rm_missing if TRUE (default), the presentation of the missing data will be removed from table
+#' @param rm_missing if TRUE (default), the presentation of the missing data will be removed from table.
+#' 
+#' @param nobs_text string indicating text shown for the number of missing observation. Default is "Nobs".
 #'  
 #' @return a gtsummary table with the Nobs 
 #' 
@@ -64,7 +66,7 @@
 #' add_overall() 
 #' 
 #'  # .Add Nobs gtsummaty table 
-#' tab |>  add_nobs (location = "row", rm_missing = TRUE)
+#' tab |>  add_nobs (location = "row", rm_missing = TRUE, nobs_text ="No")
 #' tab |> add_nobs (location = "col")
 #'   
 #' # Ex2: un-stratified table 
@@ -83,7 +85,7 @@
 #' @import gtsummary
 #' 
 
-add_nobs <- function(table, location = "col", rm_missing = TRUE){
+add_nobs <- function(table, location = "col", rm_missing = TRUE, nobs_text = "Nobs"){
   
   #...........................................----
   # parameters ----
@@ -124,7 +126,7 @@ add_nobs <- function(table, location = "col", rm_missing = TRUE){
     length(grp) == 0
   ){
     table <- table  %>% 
-      add_n( col_label = "**Nobs**")
+      add_n( col_label = sprintf("**%s**", nobs_text) )
   }
   
   # Add Nobs per groups: if groups----
@@ -139,7 +141,7 @@ add_nobs <- function(table, location = "col", rm_missing = TRUE){
     table <- 
       table %>% 
       add_stat (fns = everything() ~ add_by_n  )  %>% 
-      modify_header (starts_with("add_n_stat") ~ "**Nobs**") 
+      modify_header (starts_with("add_n_stat") ~ sprintf("**%s**",nobs_text) )
     
     for (i in 1:n_grp){
       table <- 
@@ -164,7 +166,7 @@ add_nobs <- function(table, location = "col", rm_missing = TRUE){
           mutate( 
             label = case_when(
               row_type !="label" ~ label,
-              .default = sprintf("%s, Nobs = %s",label, n)
+              .default = sprintf("%s, %s = %s",label, nobs_text, n)
             )
           )  %>% 
           select(-n)
@@ -282,7 +284,7 @@ add_nobs <- function(table, location = "col", rm_missing = TRUE){
             label = case_when(
               row_type!="label" & is.na(label) ~ stat_label,
               row_type!="label" & !is.na(label) ~ label,
-              .default= sprintf("%s, Nobs",label)
+              .default= sprintf("%s, %s",label, nobs_text)
             )
           )  %>% 
           select( -starts_with("add_n_stat"), -any_of( c("n", "stat_label") ) )

@@ -2,9 +2,9 @@
 % Please edit documentation in R/add_nobs.R
 \name{add_nobs}
 \alias{add_nobs}
-\title{bl_nobs_function}
+\title{add_nobs}
 \usage{
-add_nobs(table, location = "col", rm_missing = TRUE)
+add_nobs(table, location = "col", rm_missing = TRUE, nobs_text = "Nobs")
 }
 \arguments{
 \item{table}{a gtsummary table of class "tbl_summary"}
@@ -17,7 +17,9 @@ add_nobs(table, location = "col", rm_missing = TRUE)
  
 "var_name": Nobs is added after the variable name within the same cell.This option is only available if the table is not stratified}
 
-\item{rm_missing}{if TRUE (default), the presentation of the missing data will be removed from table}
+\item{rm_missing}{if TRUE (default), the presentation of the missing data will be removed from table.}
+
+\item{nobs_text}{string indicating text shown for the number of missing observation. Default is "Nobs".}
 }
 \value{
 a gtsummary table with the Nobs
@@ -65,7 +67,7 @@ tab <-
 add_overall() 
 
  # .Add Nobs gtsummaty table 
-tab |>  add_nobs (location = "row", rm_missing = TRUE)
+tab |>  add_nobs (location = "row", rm_missing = TRUE, nobs_text ="No")
 tab |> add_nobs (location = "col")
   
 # Ex2: un-stratified table 
