@@ -4,7 +4,7 @@
 \alias{add_nobs}
 \title{bl_nobs_function}
 \usage{
-add_nobs(table, location = "col")
+add_nobs(table, location = "col", rm_missing = TRUE)
 }
 \arguments{
 \item{table}{a gtsummary table of class "tbl_summary"}
@@ -16,6 +16,8 @@ add_nobs(table, location = "col")
 "row" : Nobs is displayed as statistics alongside the variable name. Stats are presented below 
  
 "var_name": Nobs is added after the variable name within the same cell.This option is only available if the table is not stratified}
+
+\item{rm_missing}{if TRUE (default), the presentation of the missing data will be removed from table}
 }
 \value{
 a gtsummary table with the Nobs
@@ -63,7 +65,7 @@ tab <-
 add_overall() 
 
  # .Add Nobs gtsummaty table 
-tab |>  add_nobs (location = "row")
+tab |>  add_nobs (location = "row", rm_missing = TRUE)
 tab |> add_nobs (location = "col")
   
 # Ex2: un-stratified table 
