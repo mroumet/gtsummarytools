@@ -8,19 +8,19 @@
 #' This function can be used to calculate the number of Nobs (i.e. number of non-missing data).
 #' It can be used to add the Nobs to a new column into a gtsummary table (see example). 
 #'
-#' @param data 
-#' @param variable 
-#' @param by 
+#' @param data a dataset
+#' @param variable a variable
+#' @param by the grouping variable
 #' @param ... 
 #'
-#' @export
 #'
 #' @examples 
 #'  table %>%
 #'  add_stat( fns = everything() ~ add_by_n    )
-#'  (where table is a gtsummary table)
+#'  #(where table is a gtsummary table)
 #'  
-#' @import dplyr  
+#' @import dplyr 
+#' @noRd 
 
 
 

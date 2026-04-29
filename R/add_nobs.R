@@ -84,7 +84,7 @@ add_nobs <- function(table, location = "col"){
   #...........................................----
   grp <- table$inputs$by 
   data <- table$inputs$data
-  
+  by_col <- tab <- temp_na_stat <- variable <- NULL
   #...........................................----
   # Check basic errors / parameters def ----
   #...........................................----
